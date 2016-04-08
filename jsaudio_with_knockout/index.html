@@ -1,0 +1,57 @@
+<html>
+<head>
+<title></title>
+<script src="jquery.js"></script>
+<script src="knockout.js"></script>
+<script src="play.js"></script>
+<style>
+*{
+	margin: 5px;
+}
+progress {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 250px;
+	height: 20px;
+}
+
+progress::-webkit-progress-bar {
+	background-color: #eee;
+	border-radius: 2px;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.25) inset;
+}
+progress::-webkit-progress-value {
+	background-image:
+		-webkit-linear-gradient(-45deg, 
+	                           transparent 33%, rgba(0, 0, 0, .1) 33%, 
+	                           rgba(0,0, 0, .1) 66%, transparent 66%),
+		-webkit-linear-gradient(top, 
+	                           rgba(255, 255, 255, .25), 
+	                           rgba(0, 0, 0, .25)),
+		-webkit-linear-gradient(left, #09c, #f44);
+	border-radius: 2px; 
+	background-size: 35px 20px, 100% 100%, 100% 100%;
+}
+span, #vol{
+	margin: 0;
+} 
+</style>
+</head>
+<body>
+<button data-bind="click: playMusic, text: playText"></button>
+<button data-bind="click: stopMusic, text: stopText" id="stopbut"></button>
+<button data-bind="click: loopMusic, text: loopText"></button>
+<br>
+Volume: <input type="range" id="vol" min="0" max="100" data-bind="value: musicVolume">&nbsp;<span data-bind="text: currentVolume"></span>
+<br>
+<input type="text" placeholder="Key in the wanted time in seconds" id="position_grabber" size="50">
+<input type="button" id="go" value="Go!">
+<br>
+<progress max="100" data-bind="event: {mouseenter: changeCursorPointer, mouseleave: changeCursorDefault}"></progress>
+<br>
+<span id="curr_time">0:00</span><span id="total_time">/0:00</span>
+<br>
+<span id="note" style="display: none;"></span>
+<br>
+</body>
+</html>
